@@ -1,6 +1,7 @@
 <template>
   <div id="app">
    初始化
+   <el-button type='primary'>危险危险危险</el-button>
   </div>
 </template>
 

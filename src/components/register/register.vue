@@ -26,7 +26,11 @@
 
                <el-button type="primary" @click="onSubmit" class="subBtn">立即创建</el-button>
 
-        </el-form>
+          </el-form>
+          <!-- 第二步:填写接收到的验证码 -->
+
+
+          <!-- 第三步提交验证码 -->
         </div>
        
         
@@ -73,11 +77,13 @@ export default {
         // 如果账号没注册过，发送验证码
         if(res.exist !== 1){
           // 发送验证码
-          //  getCode(this.registerForm.phone)
+           getCode(this.registerForm.phone).then(res=>{
+             console.log(res);
+           })
         }
     },
     // 获取验证码
-    async 
+     
 
   },
 }

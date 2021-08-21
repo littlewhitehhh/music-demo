@@ -39,3 +39,28 @@ export function getCode(phone) {
         }
     })
 }
+// 上传验证码并检查
+export function submitCode(phone, code) {
+    return request({
+        methods: 'Get',
+        url: '/captcha/verify',
+        params: {
+            phone,
+            captcha: code
+        }
+    })
+}
+
+// 完成注册
+export function finishRegister({ phone, password, nickname, code }) {
+    return request({
+        methods: 'Get',
+        url: '/register/cellphone',
+        params: {
+            phone,
+            password,
+            nickname,
+            captcha: code
+        }
+    })
+}

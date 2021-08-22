@@ -8,10 +8,12 @@
     </el-header>
     <el-container>
       <!-- 左侧侧边栏 -->
-      <el-aside width="200px">Aside</el-aside>
+      <el-aside width="200px">
+        <!-- 使用左侧导航栏 -->
+        <aside-bar></aside-bar>
+      </el-aside>
       <!-- 右侧主体部分 -->
       <el-main>
-        main
         <!-- 二级路由占位符  discover video collection recommendmusic等-->
         <router-view></router-view>
       </el-main>
@@ -23,12 +25,13 @@
 <script>
 // 引入结构组件
 import headerBar from 'components/headerBar/headerBar.vue'          //头部导航栏组件
-
+import asideBar from 'components/asideBar/asideBar.vue'
 
 export default {
   name:'home',
   components:{
-    headerBar
+    headerBar,
+    asideBar
   }
 }
 </script>
@@ -39,5 +42,8 @@ export default {
     line-height: 50px !important;
     padding: 0;
     margin: 0;
+  }
+  .el-main {
+    padding: 10px;
   }
 </style>

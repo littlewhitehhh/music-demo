@@ -1,5 +1,5 @@
 <template>
-  <div class="discover">
+  <div class="video">
     <!-- 三级路由占位符 -->
     <!-- 头部导航组件 -->
     <nav-bar :navBarItem='navBarItem' @clickBarItem="clickBarItem"></nav-bar>
@@ -12,17 +12,15 @@
 import navBar from 'components/navBar/navBar.vue'
 
 export default {
-  name:'discover',
+  name:'video',
   components:{
     navBar
   },
   data() {
     return {
        navBarItem:[
-        { name: "个性推荐", path: "/discover/recommend" },
-        { name: "歌单", path: "/discover/musiclist" },
-        { name: "排行榜", path: "/discover/ranking" },
-        { name: "歌手", path: "/discover/singer" },
+        { name: "视频", path: "/video/videolist" },
+        { name: "MV", path: "/video/mvlist" },
       ]
     }
   },

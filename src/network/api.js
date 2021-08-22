@@ -64,3 +64,22 @@ export function finishRegister({ phone, password, nickname, code }) {
         }
     })
 }
+
+// 获取热搜榜
+export function getHotSearch() {
+    return request({
+        methods: 'Get',
+        url: '/search/hot/detail'
+    })
+}
+
+// 根据输入内容进行搜索  搜索建议
+export function getSearchSuggest(keywords) {
+    return request({
+        methods: 'Get',
+        url: '/search/suggest',
+        params: {
+            keywords,
+        },
+    })
+}

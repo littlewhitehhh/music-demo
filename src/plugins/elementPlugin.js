@@ -13,7 +13,9 @@ import {
     FormItem,
     Message,
     Dialog,
-
+    Menu,
+    MenuItemGroup,
+    MenuItem
 
 
 } from 'element-ui'
@@ -29,5 +31,8 @@ Vue.use(Popover)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Dialog)
+Vue.use(Menu)
+Vue.use(MenuItemGroup)
+Vue.use(MenuItem)
 
 Vue.prototype.$message = Message

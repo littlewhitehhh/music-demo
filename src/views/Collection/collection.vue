@@ -1,16 +1,39 @@
 <template>
-  <div>
+  <div class="discover">
     <!-- 三级路由占位符 -->
+    <!-- 头部导航组件 -->
+    <nav-bar :navBarItem='navBarItem' @clickBarItem="clickBarItem"></nav-bar>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+// 引入navbar头部导航组件
+import navBar from 'components/navBar/navBar.vue'
+
 export default {
-  name:'collection'
+  name:'discover',
+  components:{
+    navBar
+  },
+  data() {
+    return {
+       navBarItem:[
+        { name: "专辑", path: "/collection/collectionAlbum" },
+        { name: "歌手", path: "/collection/collectionSinger" },
+        { name: "视频", path: "/collection/collectionVideo" },
+      ]
+    }
+  },
+  methods: {
+    clickBarItem(path){
+      // console.log(path);
+    this.$router.push(path)
+    }
+  },
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

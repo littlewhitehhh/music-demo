@@ -83,3 +83,65 @@ export function getSearchSuggest(keywords) {
         },
     })
 }
+
+
+
+// 获取个性推荐歌单 recommendMusicList
+export function getRecommendMusic(limit = 10) {
+    return request({
+        method: 'GET',
+        url: '/personalized',
+        params: {
+            limit,
+        }
+    })
+}
+
+// 获取个性推荐 轮播图
+export function getBannerData() {
+    return request({
+        method: 'GET',
+        url: '/banner',
+
+    })
+}
+
+//获取歌单   高质量歌单
+export function getTheFirstOfHighquality(limit = 1) {
+    return request({
+        method: 'GET',
+        url: '/top/playlist/highquality',
+        params: {
+            limit,
+        }
+
+    })
+}
+// 获取歌单  热门歌单getHotTag 
+export function getHotTag() {
+    return request({
+        method: 'GET',
+        url: '/playlist/hot',
+    })
+}
+
+// 获取歌单  歌单分类数据
+export function getMusicList() {
+    return request({
+        method: 'GET',
+        url: '/playlist/catlist',
+    })
+}
+
+//获取歌单   根据歌单名获取详情信息
+export function getMusicListDetail(cat, offset, limit = 20) {
+    return request({
+        method: 'GET',
+        url: '/top/playlist',
+        params: {
+            cat,
+            offset,
+            limit
+        }
+    })
+}

@@ -53,10 +53,11 @@ const routes = [
     {
         path: '/index',
         component: Index,
-        // redirect: '/discover',
+        redirect: '/discover',
         children: [{ // 、discover
                 path: '/discover',
                 component: Discover,
+                redirect: '/discover/recommend',
                 children: [{
                         path: '/discover/recommend',
                         component: Recommend,

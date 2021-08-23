@@ -6,5 +6,12 @@
 </template>
 
 <style>
-
+body{
+  overflow-x: hidden;
+}
+/* 歌单tag标签 */
+.sortPop{
+  height: 40% !important;
+  overflow-y:scroll  !important;
+}
 </style>

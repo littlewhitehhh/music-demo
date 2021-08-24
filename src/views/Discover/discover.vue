@@ -26,10 +26,14 @@ export default {
       ]
     }
   },
+  created() {
+    // this.$router.push(window.sessionStorage.getItem('path'))
+  },
   methods: {
     clickBarItem(path){
       // console.log(path);
     this.$router.push(path)
+    
     }
   },
 }

@@ -145,3 +145,28 @@ export function getMusicListDetail(cat, offset, limit = 20) {
         }
     })
 }
+// 获取所有排行榜单
+
+export function getAllRankings() {
+    return request({
+        method: 'GET',
+        url: '/toplist',
+
+    })
+}
+
+
+// 获取歌手列表
+export function getSingerList(type, area, initial, offset) {
+    return request({
+        method: 'GET',
+        url: '/artist/list',
+        params: {
+            type,
+            area,
+            initial,
+            offset
+        }
+
+    })
+}

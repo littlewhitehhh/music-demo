@@ -18,7 +18,10 @@ import {
     MenuItem,
     Carousel,
     CarouselItem,
-    Pagination
+    Pagination,
+    Table,
+    TableColumn,
+    InfiniteScroll
 
 
 } from 'element-ui'
@@ -40,5 +43,8 @@ Vue.use(MenuItem)
 Vue.use(Carousel)
 Vue.use(CarouselItem)
 Vue.use(Pagination)
+Vue.use(Table)
+Vue.use(TableColumn)
+Vue.use(InfiniteScroll)
 
 Vue.prototype.$message = Message

@@ -17,32 +17,32 @@
     </div>
     <!-- 歌单导航栏列表 -->
     <div class="musicListNavBar">
-    <!-- 左侧弹出框 -->
-    <div class="left">
-      <!-- 华语 <i class="iconfont icon-arrow-right-bold"></i> -->
-      <el-popover
-        placement="bottom-start"
-        width="400"
-         v-model="isPopoverShow"
-        popper-class="sortPop"
-        trigger="click">
-        <div class="sortBox" slot="reference">
-          {{currentTag.name}}<i class="iconfont icon-arrow-right-bold"></i>
-        </div>
-        <div class="sortList">
-          <div class="sortItem" v-for="(item,index) in gedanCatList" :key="index" @click="clickSortItme(item,index)"
-          :class="{sortActive:sortItemIndex == index?true:false}">
-            {{item.name}}
+      <!-- 左侧弹出框 -->
+      <div class="left">
+        <!-- 华语 <i class="iconfont icon-arrow-right-bold"></i> -->
+        <el-popover
+          placement="bottom-start"
+          width="400"
+          v-model="isPopoverShow"
+          popper-class="sortPop"
+          trigger="click">
+          <div class="sortBox" slot="reference">
+            {{currentTag.name}}<i class="iconfont icon-arrow-right-bold"></i>
           </div>
-        </div>
-      </el-popover>
-    </div>
-    <!-- 右侧navbar -->
-    <div class="right">
-      <div class="tagNavBar" v-for="(item,index) in HotTagList" :key="item.id" @click="clickTagNavBar(item,index)" :class="{active:tagNavBarIndex==index?true:false}">
-        {{item.name}}
+          <div class="sortList">
+            <div class="sortItem" v-for="(item,index) in gedanCatList" :key="index" @click="clickSortItme(item,index)"
+            :class="{sortActive:sortItemIndex == index?true:false}">
+              {{item.name}}
+            </div>
+          </div>
+        </el-popover>
       </div>
-    </div>    
+      <!-- 右侧navbar -->
+      <div class="right">
+        <div class="tagNavBar" v-for="(item,index) in HotTagList" :key="item.id" @click="clickTagNavBar(item,index)" :class="{active:tagNavBarIndex==index?true:false}">
+          {{item.name}}
+        </div>
+      </div>    
     </div>
     <!-- 歌单列表 -->
     <div class="playList">

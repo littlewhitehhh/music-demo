@@ -30,12 +30,15 @@ export default {
   data() {
     return {
       currentIndex:0,
-     
     }
+  },
+  created() {
+    this.currentIndex = window.sessionStorage.getItem('secondpathIndex')
   },
   methods: {
     clickBarItem(path,index){
       this.currentIndex = index
+      window.sessionStorage.setItem('secondpathIndex', index)
       // console.log(index,path);
       this.$emit('clickBarItem',path)
     }

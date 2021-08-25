@@ -33,7 +33,7 @@ export default {
     }
   },
   created() {
-    this.currentIndex = window.sessionStorage.getItem('secondpathIndex')
+    this.currentIndex = window.sessionStorage.getItem('secondpathIndex') || 0
   },
   methods: {
     clickBarItem(path,index){
@@ -48,6 +48,8 @@ export default {
   
 <style scoped>
 .navBarContainer{
+ 
+
   height: 60px;
   width: 100%;
   /* line-height: 60px; */

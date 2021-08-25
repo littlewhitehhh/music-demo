@@ -82,7 +82,7 @@ const routes = [
                         component: collectionAlbum
                     },
                     {
-                        path: 'collection/collectionSinger',
+                        path: '/collection/collectionSinger',
                         component: collectionSinger
                     },
                     {
@@ -95,6 +95,7 @@ const routes = [
             { // 、video
                 path: '/video',
                 component: Videos,
+                redirect: '/video/videolist',
                 children: [{
                         path: '/video/videolist',
                         component: videoList,

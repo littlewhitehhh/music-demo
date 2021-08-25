@@ -85,7 +85,7 @@ export function getSearchSuggest(keywords) {
 }
 
 
-
+//discover
 // 获取个性推荐歌单 recommendMusicList
 export function getRecommendMusic(limit = 10) {
     return request({
@@ -165,6 +165,53 @@ export function getSingerList(type, area, initial, offset) {
             type,
             area,
             initial,
+            offset
+        }
+
+    })
+}
+
+// video
+// 获取视频全部分类
+export function getVideoTag() {
+    return request({
+        method: 'GET',
+        url: '/video/category/list',
+
+    })
+}
+
+//获取视频热门分类tag
+export function getVideoCategory() {
+    return request({
+        method: 'GET',
+        url: '/video/group/list',
+
+    })
+}
+
+// 根据选中的标签 获取视频列表
+export function getVideoList(id, offset) {
+    return request({
+        method: 'GET',
+        url: '/video/group',
+        params: {
+            id,
+            offset
+        }
+
+    })
+}
+
+// 获取mv
+export function getMvList(type, area, order, offset) {
+    return request({
+        method: 'GET',
+        url: '/mv/all',
+        params: {
+            type,
+            area,
+            order,
             offset
         }
 

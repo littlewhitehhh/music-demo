@@ -24,7 +24,7 @@ export default {
   props:{
     songSheetList:{
       type:Array,
-      default:{},
+      default:[],
     },
     // 是否使用上拉触底事件
     isLoad: {

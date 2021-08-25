@@ -13,7 +13,7 @@
     <!-- 轮播图 -->
     <div class="banner">
       <el-carousel :interval="4000" type="card" height="200px">
-        <el-carousel-item v-for="item in bannerList" :key="item.encodeId">
+        <el-carousel-item v-for="(item,index) in bannerList" :key="index">
           <img class="medium" :src="item.imageUrl">
         </el-carousel-item>
       </el-carousel>

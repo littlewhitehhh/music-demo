@@ -3,7 +3,7 @@
     
     <!-- 侧边导航栏 -->
     <el-menu
-      :default-active=activePath
+      :default-active = activePath
       class="el-menu-vertical-demo"
       router
 
@@ -49,7 +49,7 @@ export default {
     }
   },
   created() {
-    this.activePath =  window.sessionStorage.getItem('activePath')
+    this.activePath =  window.sessionStorage.getItem('activePath') || '/discover'
     // 取路由中的首地址 用于侧边栏的导航active
     // this.activePath = "/" + this.$route.path.split("/")[1];
   },

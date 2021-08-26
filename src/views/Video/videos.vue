@@ -1,5 +1,5 @@
 <template>
-  <div class="video">
+  <div class="videos">
     <!-- 三级路由占位符 -->
     <!-- 头部导航组件 -->
     <nav-bar :navBarItem='navBarItem' @clickBarItem="clickBarItem"></nav-bar>
@@ -12,7 +12,7 @@
 import navBar from 'components/navBar/navBar.vue'
 
 export default {
-  name:'video',
+  name:'videos',
   components:{
     navBar
   },
@@ -26,7 +26,6 @@ export default {
   },
   methods: {
     clickBarItem(path){
-      // console.log(path);
     this.$router.push(path)
     }
   },

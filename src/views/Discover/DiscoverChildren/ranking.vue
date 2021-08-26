@@ -43,7 +43,7 @@ export default {
   },
   created() {
     getAllRankings().then(res=>{
-      console.log(res);
+      // console.log(res);
       this.officialList = res.data.list.slice(0,4)
       this.worldList = res.data.list.slice(4)
     })

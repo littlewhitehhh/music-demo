@@ -27,7 +27,7 @@ export default {
     }
   },
   created() {
-    // this.$router.push(window.sessionStorage.getItem('path'))
+    
   },
   methods: {
     clickBarItem(path){

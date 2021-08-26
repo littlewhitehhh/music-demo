@@ -21,7 +21,9 @@ import {
     Pagination,
     Table,
     TableColumn,
-    InfiniteScroll
+    // InfiniteScroll,
+    InfiniteScroll,
+
 
 
 } from 'element-ui'

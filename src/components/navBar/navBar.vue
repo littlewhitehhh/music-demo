@@ -24,7 +24,9 @@ export default {
   props:{
     navBarItem:{
       type:Array,
-      default:[]
+      default(){
+        return []
+      }
     }
   },
   data() {
@@ -33,12 +35,14 @@ export default {
     }
   },
   created() {
-    this.currentIndex = window.sessionStorage.getItem('secondpathIndex') || 0
+    // this.currentIndex = window.sessionStorage.getItem('secondpathIndex') || 0
+    // console.log(this.$router);
+    this.$router.push(this.navBarItem[this.currentIndex].path)
   },
   methods: {
     clickBarItem(path,index){
       this.currentIndex = index
-      window.sessionStorage.setItem('secondpathIndex', index)
+      // window.sessionStorage.setItem('secondpathIndex', index)
       // console.log(index,path);
       this.$emit('clickBarItem',path)
     }

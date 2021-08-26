@@ -89,13 +89,13 @@ export default {
       this.getMv()
     },
     typeItem(index){
-      this.area = this.typeList[index].path
+      this.type = this.typeList[index].path
       this.getMv()
 
       // console.log('lelele',index);
     },
     orderItem(index){
-      this.area = this.orderList[index].path
+      this.order = this.orderList[index].path
       this.getMv()
 
       // console.log('heiheihei',index);

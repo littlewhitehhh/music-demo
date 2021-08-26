@@ -38,10 +38,12 @@
         </el-popover>
       </div>
       <!-- 右侧navbar -->
+      <!-- <second-navbar :SecondNavBarData="HotTagList"></second-navbar> -->
       <div class="right">
-        <div class="tagNavBar" v-for="(item,index) in HotTagList" :key="item.id" @click="clickTagNavBar(item,index)" :class="{active:tagNavBarIndex==index?true:false}">
+        <!-- <div class="tagNavBar" v-for="(item,index) in HotTagList" :key="item.id" @click="clickTagNavBar(item,index)" :class="{active:tagNavBarIndex==index?true:false}">
           {{item.name}}
-        </div>
+        </div> -->
+        <second-navbar :SecondNavBarData="HotTagList" :itemWidth = "60" :currentTag="currentTag" @clickSecondBarItem="clickSecondBarItem"></second-navbar>
       </div>    
     </div>
     <!-- 歌单列表 -->
@@ -68,10 +70,12 @@
 import {getTheFirstOfHighquality,getHotTag ,getMusicList, getMusicListDetail} from 'network/api.js'
 // 引入组件
 import listCard from 'components/listCard/listCard.vue'
+import secondNavbar from 'components/secondNavbar/secondNavbar'
 export default {
   name:'musicList',
   components:{
-    listCard 
+    listCard,
+    secondNavbar
   },
   data() {
     return {
@@ -111,43 +115,61 @@ export default {
       // 默认为热门第一个
       this.currentTag = res.data.tags[0]
       this.HotTagList = res.data.tags
+      /* getMusicListDetail(this.currentTag.name,this.pageSize * (this.currentPage - 1),this.pageSize).then(res=>{
+          //  console.log(res);
+           this.songSheetList = res.data.playlists
+           this.total =res.data.total
+        }) */
+        this.getMusicSheet()
+
     })
+    // 获取全部歌单tag
     getMusicList().then(res=>{
       // console.log(res.data);
       this.gedanCatList = res.data.sub
     })
-    getMusicListDetail().then(res=>{
-      console.log(res);
-      this.songSheetList = res.data.playlists
-      this.total =res.data.total
-    })
-    this.tagNavBarIndex=-1
+
   },
   methods: {
-    // 点击sortItem 触发事件
+    // 二次封装根据标签name获取歌单
+    getMusicSheet(){
+      getMusicListDetail(this.currentTag.name,this.pageSize * (this.currentPage - 1),this.pageSize).then(res=>{
+           console.log(res);
+           this.songSheetList = res.data.playlists
+           this.total = res.data.total
+        })
+    },
+    // 点击sortItem 触发事件      选中全部标签中的一项
     clickSortItme(item,index){
       // console.log(index);
       this.sortItemIndex = index
       this.currentTag = item;
       this.isPopoverShow = false
       // 获取歌单
-       getMusicListDetail(item.name,this.pageSize * (this.currentPage - 1),this.pageSize).then(res=>{
+      /*  getMusicListDetail(this.currentTag.name,this.pageSize * (this.currentPage - 1),this.pageSize).then(res=>{
            console.log(res);
            this.songSheetList = res.data.playlists
-        })
+        }) */
+        this.getMusicSheet()
     },
-    // 点击TagNavBar 触发事件
-    clickTagNavBar(item,index){  
-        this.tagNavBarIndex = index
-        this.currentTag = this.HotTagList[index]
+    // 点击secondNavBar 触发事件   选中热门标签中的一项
+    clickSecondBarItem(index){  
+        // this.tagNavBarIndex = index
+        console.log(index)
+         /* this.currentTag = this.gedanCatList.find(item=>{
+           return item.name == this.HotTagList[index].name
+           
+          // console.log(item.name);
+         }) */
+         this.currentTag = this.HotTagList[index]
+         console.log(this.currentTag);
         // 还得传入name  获取歌单
-        // console.log(item);
-
-        getMusicListDetail(item.name,this.pageSize * (this.currentPage - 1),this.pageSize).then(res=>{
+        /* getMusicListDetail(this.currentTag.name,this.pageSize * (this.currentPage - 1),this.pageSize).then(res=>{
            console.log(res);
            this.songSheetList = res.data.playlists
            this.total =res.data.total
-        })
+        }) */
+        this.getMusicSheet()
     },
     // 点击个单列表卡片传递过来的事件
     clickListCardItem(id){
@@ -253,6 +275,7 @@ export default {
   padding: 5px 10px;
   border: 1px solid #ddd;
   border-radius: 15px;
+  line-height: 20px;
 }
 .musicListNavBar .left i {
   font-size: 12px;
@@ -265,8 +288,14 @@ export default {
    height: 40% !important;
   overflow-y:scroll  !important;
 } */
+/* .sortBox{
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  cursor: pointer;
+  transform: scale(0.9);
+} */
 .sortList{
-
   display: flex;
   flex-wrap: wrap;
 }
@@ -290,11 +319,11 @@ export default {
   display: flex;
   justify-content: flex-end;
 }
-.tagNavBar{
+/* .tagNavBar{
   line-height: 25px;
   margin-right: 20px;
   cursor: pointer;
-}
+} */
 .active {
   background-color: #fdf5f5;
   color: #ec4747;

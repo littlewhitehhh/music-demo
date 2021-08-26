@@ -1,8 +1,19 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-// 懒加载模式引入组件
-//引入index
+
+
+// 避免导航冗余提示报错
+
+const originalPush = VueRouter.prototype.push
+
+VueRouter.prototype.push = function push(location) {
+
+        return originalPush.call(this, location).catch(err => err)
+
+    }
+    // 懒加载模式引入组件
+    //引入index
 const Index = () =>
     import ('views/index.vue')
 

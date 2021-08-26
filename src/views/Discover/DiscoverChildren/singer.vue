@@ -18,7 +18,7 @@
 
 
     </div>
-    <list-card :songSheetList="singerList" @clickListCardItem="clickSingerItem"></list-card>
+    <list-card :songSheetList="singerList" @clickListCardItem="clickSingerItem" isLoad @bottomLoad='bottomLoad'></list-card>
   </div>
 </template>
 
@@ -101,9 +101,9 @@ export default {
     // 二次封装请求
     getSingers(){
       getSingerList(this.type,this.area,this.initial,(this.currentPage - 1 ) *this.pageSize).then(res=>{
-        // console.log(res);
+        console.log(res);
         // 先清空
-        this.singerList = [],
+        // this.singerList = [],
         this.singerList.push(...res.data.artists)
         this.isMore = res.data.more
       })
@@ -112,22 +112,32 @@ export default {
     areaItem(index){
       // console.log(index);
       this.area = this.languageSort[index].area
+      this.singerList = [],
+      this.currentPage = 1;
+
       this.getSingers()
     },
     typeItem(index){
       // console.log(index);
       this.type = this.typeSort[index].type
+      this.singerList = [],
+      this.currentPage = 1;
+
       this.getSingers()
 
     },
     initialItem(index){
       // console.log(index);
       this.initial = this.initialSort[index].initial
+      this.singerList = [],
+      this.currentPage = 1;
+
       this.getSingers()
 
     },
+    // 我传过来了啊啊？ 
     bottomLoad(){
-      console.log('嘿嘿嘿');
+      // console.log('嘿嘿嘿');
       // 如果还有更多，则继续加载
        if (this.isMore == true) {
         this.currentPage += 1;

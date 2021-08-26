@@ -15,7 +15,7 @@
             {{currentTag.name}}<i class="iconfont icon-arrow-right-bold"></i>
           </div>
           <div class=" videoCategory">
-            <div class="videoCategoryItem" v-for="(item,index) in videoCategory" :key="index" @click="videoCategoryItem(item,index)"
+            <div class="videoCategoryItem" v-for="(item,index) in videoCategory" :key="index" @click="videoCategoryItem(index)"
             :class="{videoCategoryActive: videoCategoryIndex == index?true:false}">
               {{item.name}}
             </div>
@@ -24,9 +24,10 @@
       </div>
       <!-- 右侧navbar -->
       <div class="right">
-        <div class="tagNavBar" v-for="(item,index) in  videoTag" :key="item.id" @click="clickTagNavBar(item,index)" :class="{active:tagNavBarIndex==index?true:false}">
+        <!-- <div class="tagNavBar" v-for="(item,index) in  videoTag" :key="item.id" @click="clickTagNavBar(item,index)" :class="{active:tagNavBarIndex==index?true:false}">
           {{item.name}}
-        </div>
+        </div> -->
+        <second-navbar :SecondNavBarData = 'videoTag' :itemWidth="60" :currentTag = currentTag @clickSecondBarItem="clickSecondBarItem"></second-navbar>
       </div>  
     </div>
 
@@ -48,13 +49,15 @@
 import {getVideoCategory,getVideoTag,getVideoList} from 'network/api.js'
 // 引入组件
 import navBar from 'components/navBar/navBar.vue'
+import secondNavbar from 'components/secondNavbar/secondNavbar.vue'
 import videoListCard from 'components/videoListCard/videoListCard.vue'
 
 export default {
   name:'videolist',
   components:{
     navBar,
-    videoListCard
+    videoListCard,
+    secondNavbar
   },
   data() {
     return {
@@ -73,62 +76,58 @@ export default {
       // 当前页
       videoPage:1,
       // video列表
-      videoList:[]
+      videoList:[],
+      hasMore :false
       
     }
   },
   created() {
+    // 获取所有分类
     getVideoCategory().then(res=>{
       // console.log(res);
       this.videoCategory = res.data.data 
     })
+    // 获取热门分类
     getVideoTag().then(res=>{
       // console.log(res);
       this.videoTag = res.data.data
-      this.currentTag = res.data.data[0]
+      this.currentTag = res.data.data[0]   //现场
+      this.getVideos()  
     })
     // this.getVideo()
     
   },
   mounted() {
-    getVideoList(this.currentTag.id, 8 * (this.videoPage - 1)).then(res=>{
-      console.log(res)
-    })
   },
   methods: {
+    // 二次封装获取视频列表
+    getVideos(){
+      getVideoList(this.currentTag.id, 8 * (this.videoPage - 1)).then(res=>{
+        console.log(res);
+        this.videoList.push(...res.data.datas)
+        this.hasMore = res.data.hasmore
+      })
+    },
     // 选择左侧标签触发点击事件
-    videoCategoryItem(item,index){
+    videoCategoryItem(index){
       this.isPopoverShow = false
       this.videoCategoryIndex = index
       this.currentTag = this.videoCategory[index]
-       getVideoList(item.id).then(res=>{
-        console.log(res);
-        // 清空video列表
-        this.videoList = []
-        this.videoList.push(...res.data.datas)
-      })
+      this.videoList = [],
+      this.videoPage = 1,
+      this.getVideos()
       // console.log(item);
     },
-    //选择右侧navbar标签触发事件
-    clickTagNavBar(item,index){
-      this.tagNavBarIndex =index
+    //选择右侧secondNavbar标签触发事件
+    clickSecondBarItem(index){
+      console.log(index);
+      // this.tagNavBarIndex =index
       this.currentTag = this.videoTag[index]
       // console.log(item);
-      getVideoList(item.id).then(res=>{
-        // console.log(res)
-        // 清空video列表
-        this.videoList = []
-        this.videoList.push(...res.data.datas)
-      })  
+      this.videoList = [],
+      this.videoPage = 1,
+      this.getVideos()
     },
-    // 获取video
-      getVideo(){
-        getVideoList(this.currentTag.id,(this.videoPage - 1)* 8).then(res=>{
-          // console.log(res)
-          this.videoList = []
-        this.videoList.push(...res.data.datas)
-        })
-      },
     goToVideoDetail(id, index, type){
       console.log(id, index, type);
     },

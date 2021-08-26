@@ -88,6 +88,7 @@ const routes = [
             { // 、collection
                 path: '/collection',
                 component: Collection,
+                redirect: '/collection/collectionAlbum',
                 children: [{
                         path: '/collection/collectionAlbum',
                         component: collectionAlbum

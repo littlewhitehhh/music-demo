@@ -217,3 +217,41 @@ export function getMvList(type, area, order, offset) {
 
     })
 }
+
+
+// 根据账号获取收藏的专辑
+export function getCollectionAlbum(limit = 1000) {
+    return request({
+        method: 'GET',
+        url: '/album/sublist',
+        params: {
+            limit
+        }
+
+    })
+}
+// /artist/sublist
+// 根据账号获取收藏的歌手
+export function getCollectionSinger(limit = 1000) {
+    return request({
+        method: 'GET',
+        url: '/artist/sublist',
+        params: {
+            limit
+        }
+
+    })
+}
+
+// 根据账号请求收藏的video
+
+export function getCollectionVideo(limit = 50) {
+    return request({
+        method: 'GET',
+        url: '/mv/sublist',
+        params: {
+            limit
+        }
+
+    })
+}

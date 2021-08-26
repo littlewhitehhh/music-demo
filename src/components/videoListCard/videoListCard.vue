@@ -16,6 +16,7 @@
         @click="clickListCardItem(item.id, index, item.type)"
       >
         <div class="videoCover">
+          <!-- 封面图片 -->
           <img
             :src="
               (videoType == 'singerMv' ? item.imgurl : item.cover) +
@@ -23,12 +24,14 @@
             "
             alt=""
           />
+          <!-- 播放次数 -->
           <div class="playCount">
             <i class="iconfont icon-shipin"></i>{{ item.playCount | handleNum }}
           </div>
           <div class="videoTime" v-if="videoType == 'singerMv'">
             {{ item.duration | handleMusicTime }}
           </div>
+          <!-- 标题、歌手名字 -->
         </div>
         <div class="videoTitle">{{ item.name }}</div>
         <div class="singer" v-if="videoType == 'mv'">{{ item.artistName }}</div>
@@ -136,7 +139,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   padding: 0;
-  justify-content: center;
+  /* justify-content: center; */
   margin-top: 20px;
 }
 

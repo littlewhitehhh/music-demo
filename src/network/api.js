@@ -255,3 +255,13 @@ export function getCollectionVideo(limit = 50) {
 
     })
 }
+
+// 过去每日推荐歌单
+export function getMusicRecommend() {
+    return request({
+        method: 'GET',
+        url: '/recommend/songs',
+
+
+    })
+}

@@ -6,7 +6,6 @@
       :default-active = activePath
       class="el-menu-vertical-demo"
       router
-
      >
 
       <el-menu-item :index="item.path" v-for="(item) in asiderBarList" :key="item.path" class="menu-item" @click="toPageByIndex(item.path)">
@@ -39,7 +38,7 @@ export default {
           icon:'icon-more',
           path:'/collection'
         },{
-          title:'媒体推荐',
+          title:'每日推荐',
           icon:'icon-good',
           path:'/recommendMusic'
         }

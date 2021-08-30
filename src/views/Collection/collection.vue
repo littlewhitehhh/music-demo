@@ -25,6 +25,12 @@ export default {
       ]
     }
   },
+  created() {
+    if (!this.$store.state.isLogin) {
+      this.$message.error("只有登录后才能进入收藏页面哦!");
+      this.$router.replace("/index");
+    }
+  },
   methods: {
     clickBarItem(path){
       // console.log(path);

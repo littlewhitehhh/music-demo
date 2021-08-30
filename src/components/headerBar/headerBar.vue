@@ -170,6 +170,8 @@ export default {
       this.hotSearchLists = res.data.data
     })
     if (window.localStorage.getItem("userInfo")) {
+      // 表示已经登陆了，所以更新vuex里面的登陆状态
+      this.$store.commit("updataLoginState");
       // 从localStorage中取userinfo
       this.userInfo = JSON.parse(window.localStorage.getItem("userInfo"));
     }
@@ -191,7 +193,7 @@ export default {
         if(valid){
           // console.log('允许提交');
           const {data:res} = await loginByPhone(this.loginForm)
-          console.log(res);
+          // console.log(res);
           // 登陆成功
           if(res.code==200){
             // 将用户信息存储到localstorage
@@ -199,6 +201,7 @@ export default {
             this.userInfo = res.profile;
             this.$message.success("登录成功!");
             this.isPopoverShow = false;
+            // this.$store.commit("updataLoginState");
             // 刷新页面
             this.$router.go(0)
           }else if (res.code == 400) {
@@ -219,11 +222,14 @@ export default {
     },
     // 退出登录
     logout(){
-      console.log('我要退出了');
+      // console.log('我要退出了');
       this.isPopoverShow = false
       this.userInfo = {};
-      window.localStorage.setItem("userInfo", "");
+      window.localStorage.setItem("userInfo",'');
+      //在vuex中更新登录状态
+      this.$store.commit("updataLoginState");
       // this.clearAllCookie();
+      this.$message.success("退出成功!");
       // 刷新页面
       this.$router.go(0)
     },

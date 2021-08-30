@@ -65,9 +65,9 @@ export default {
   },
   methods: {
     clickListCardItem(id){
-      console.log(id);
-      // 跳转到各单项请页面
-      // this.$router.push()
+      // console.log(id);
+      // 跳转到歌单详情页面
+      this.$router.push(`/songSheetDetail/${id}`);
     }
   },
 }

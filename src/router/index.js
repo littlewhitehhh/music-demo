@@ -56,7 +56,9 @@ const mvList = () =>
 const RecommendMusic = () =>
     import ('views/RecommendMusic/recommendMusic.vue')
 
-
+// 引入songSheetDetail
+const songSheetDetail = () =>
+    import ('views/songSheetDetail/songSheetDetail.vue')
 Vue.use(VueRouter)
 
 const routes = [
@@ -122,6 +124,10 @@ const routes = [
                 path: '/recommendMusic',
                 component: RecommendMusic
             },
+            { //songSheetDetail  歌单详情列表
+                path: '/songSheetDetail/:id',
+                component: songSheetDetail
+            }
         ]
     }
 ]

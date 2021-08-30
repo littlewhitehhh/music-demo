@@ -15,7 +15,8 @@
       <!-- 右侧主体部分 -->
       <el-main>
         <!-- 二级路由占位符  discover video collection recommendmusic等-->
-        <router-view></router-view>
+        <!-- 解决同意地址不同参数时不会重新渲染问题 -->
+        <router-view class="routerView" :key="$route.fullPath"></router-view>
       </el-main>
     </el-container>
   </el-container>
@@ -45,5 +46,9 @@ export default {
   }
   .el-main {
     padding: 10px;
+  }
+  .el-aside{
+     height: calc(100vh - 50px);
+    overflow-y:auto ;
   }
 </style>

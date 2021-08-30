@@ -83,7 +83,16 @@ export function getSearchSuggest(keywords) {
         },
     })
 }
-
+// 根据账号获取用户收藏、创建的歌单
+export function getMusicSheetList(uid) {
+    return request({
+        method: 'Get',
+        url: '/user/playlist',
+        params: {
+            uid,
+        }
+    })
+}
 
 //discover
 // 获取个性推荐歌单 recommendMusicList
@@ -263,5 +272,34 @@ export function getMusicRecommend() {
         url: '/recommend/songs',
 
 
+    })
+}
+
+
+
+// 通过歌单id查询歌单详情
+export function getSongSheetDetail(id) {
+    return request({
+        method: 'GET',
+        url: '/playlist/detail',
+        params: {
+            id,
+        }
+
+
+    })
+}
+
+// 获取歌单评论
+export function getMusicListComment(id, offset, limit = 50, ) {
+    return request({
+        method: 'GET',
+        url: '/comment/playlist',
+        params: {
+            id,
+            offset,
+            limit,
+
+        }
     })
 }

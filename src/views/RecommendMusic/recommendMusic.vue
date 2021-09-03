@@ -67,10 +67,10 @@ export default {
     }
   },
   created() {
-    if (!this.$store.state.isLogin) {
+    /* if (!this.$store.state.isLogin) {
       this.$message.error("只有登录后才能进入每日推荐页面哦!");
       this.$router.replace("/index");
-    }
+    } */
     getMusicRecommend().then(res=>{
       console.log(res);
     this.dailySongs = res.data.data.dailySongs

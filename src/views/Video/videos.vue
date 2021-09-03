@@ -25,10 +25,10 @@ export default {
     }
   },
   created() {
-    if (!this.$store.state.isLogin) {
+    /* if (!this.$store.state.isLogin) {
       this.$message.error("只有登录后才能进入视频页面哦!");
       this.$router.push("/index");
-    }
+    } */
   },
   methods: {
     clickBarItem(path){

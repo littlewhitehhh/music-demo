@@ -26,10 +26,12 @@ export default {
     }
   },
   created() {
-    if (!this.$store.state.isLogin) {
-      this.$message.error("只有登录后才能进入收藏页面哦!");
+    // 判断是否是登陆状态
+    // console.log(this.$store.state.isLogin);
+    /* if (!this.$store.state.isLogin) {
+      this.$message.error("只有登录后才能进入每日推荐页面哦!");
       this.$router.replace("/index");
-    }
+    } */
   },
   methods: {
     clickBarItem(path){

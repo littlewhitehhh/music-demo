@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     clickBarItem(path){
-      // console.log(path);
+      console.log(path);
     this.$router.push(path)
     
     }

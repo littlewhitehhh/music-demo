@@ -157,9 +157,15 @@ export default {
     // 收藏歌单
     collectionSheet(){
       console.log('...我要开始收藏咯');
+      //判断是否已经登录
+      if (!this.$store.state.isLogin) {
+        this.$message.error("请先进行登录操作!");
+        return;
+      }
       //1、改变页面的样式
       this.isSub =  !this.isSub
       // 2、传送到服务器
+      this
       
     }
   },

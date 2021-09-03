@@ -43,7 +43,7 @@ export default {
     clickBarItem(path,index){
       this.currentIndex = index
       // window.sessionStorage.setItem('secondpathIndex', index)
-      // console.log(index,path);
+      console.log(index,path);
       this.$emit('clickBarItem',path)
     }
   },

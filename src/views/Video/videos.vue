@@ -3,7 +3,7 @@
     <!-- 三级路由占位符 -->
     <!-- 头部导航组件 -->
     <nav-bar :navBarItem='navBarItem' @clickBarItem="clickBarItem"></nav-bar>
-    <router-view></router-view>
+    <router-view class="videosList"></router-view>
   </div>
 </template>
 
@@ -32,12 +32,19 @@ export default {
   },
   methods: {
     clickBarItem(path){
-    this.$router.push(path)
+      this.$router.push(path)
     }
   },
 }
 </script>
 
 <style scoped>
-
+  /* .videoList { */
+   /* max-width: 1000px; */
+    /* margin: auto;
+    overflow-y: scroll;
+    height: calc(100vh - 162px);
+    padding: 0 0px;
+    padding-left:10px ; */
+  /* } */
 </style>

@@ -1,9 +1,12 @@
 /** 
       严重怀疑element-ui的无限滚动存在bug，好烦啊
-
+      因为歌单展示有的需要下拉加载更多，有的不需要 所以要自定义是否开启无限滚动
+      在要实现滚动加载的列表上上添加v-infinite-scroll，并赋值相应的加载方法，可实现滚动到底部时自动执行加载方法。
+      :infinite-scroll-disabled="disabled"   是否禁用无线滚动
 */
 
 <template>
+<!-- 滚动的容器 -->
   <div
     class="listCard"
     v-infinite-scroll="load"
@@ -12,9 +15,10 @@
     :infinite-scroll-immediate="false"
     ref="listCard"
   >
+  
     <div
       class="listCardItem"
-      v-for="(item, index) in songSheetList"
+      v-for="(item,index) in songSheetList"
       :key="index"
       @click="clickListCardItem(item.id)"
     >
@@ -56,20 +60,23 @@ export default {
     },
     // 上拉触底触发
     load() {
-        console.log("起飞");
+      console.log("起飞",this.disabled);
       this.$emit("bottomLoad");
       // 触发load后加载数据 期间不允许再次触发load事件
       this.disabled = true;
+     
     },
   },
   watch: {
     //   数据更新后，再次运行触发load事件
     songSheetList() {
+      // console.log(this.songSheetList.length);
       if (this.isLoad == true) {
         if (this.songSheetList.length != 0) {
           this.disabled = false;
         } else {
           this.disabled = true;
+
         }
       }
     },

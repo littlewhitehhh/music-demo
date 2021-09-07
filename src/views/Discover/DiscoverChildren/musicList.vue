@@ -134,7 +134,7 @@ export default {
     // 二次封装根据标签name获取歌单
     getMusicSheet(){
       getMusicListDetail(this.currentTag.name,this.pageSize * (this.currentPage - 1),this.pageSize).then(res=>{
-           console.log(res);
+          //  console.log(res);
            this.songSheetList = res.data.playlists
            this.total = res.data.total
         })
@@ -155,14 +155,14 @@ export default {
     // 点击secondNavBar 触发事件   选中热门标签中的一项
     clickSecondBarItem(index){  
         // this.tagNavBarIndex = index
-        console.log(index)
+        // console.log(index)
          /* this.currentTag = this.gedanCatList.find(item=>{
            return item.name == this.HotTagList[index].name
            
           // console.log(item.name);
          }) */
          this.currentTag = this.HotTagList[index]
-         console.log(this.currentTag);
+        //  console.log(this.currentTag);
         // 还得传入name  获取歌单
         /* getMusicListDetail(this.currentTag.name,this.pageSize * (this.currentPage - 1),this.pageSize).then(res=>{
            console.log(res);
@@ -178,20 +178,20 @@ export default {
     },
     // 改变条数
     handleSizeChange(val){
-       console.log(`每页 ${val} 条`);
+      //  console.log(`每页 ${val} 条`);
        this.pageSize = val
         getMusicListDetail(this.currentTag.name,this.pageSize * (this.currentPage - 1),this.pageSize).then(res=>{
-           console.log(res);
+          //  console.log(res);
            this.songSheetList = res.data.playlists
            this.total =res.data.total
         })
     },
     // 改变页面
     handleCurrentChange(val){
-      console.log(`当前页: ${val}`);
+      // console.log(`当前页: ${val}`);
       this.currentPage = val
       getMusicListDetail(this.currentTag.name,this.pageSize * (this.currentPage - 1),this.pageSize).then(res=>{
-          console.log(res);
+          // console.log(res);
           this.songSheetList = res.data.playlists
           this.total =res.data.total
       })

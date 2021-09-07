@@ -45,10 +45,17 @@ export default {
     margin: 0;
   }
   .el-main {
-    padding: 10px;
+    padding: 0px;
+    
   }
   .el-aside{
-     height: calc(100vh - 50px);
+    height: calc(100vh - 50px);
     overflow-y:auto ;
   }
+.routerView {
+  padding: 0 0px;
+  margin: 0;
+  width: 100%;
+  height: calc(100vh - 70px) !important;
+}
 </style>

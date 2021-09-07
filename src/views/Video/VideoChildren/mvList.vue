@@ -13,7 +13,12 @@
       <second-navbar :SecondNavBarData=" orderList" class="secondNavBar" @clickSecondBarItem="orderItem" :itemWidth="50"></second-navbar>
       <!-- <div>lalal </div> -->
     </div>
-    <video-list-card :videoList="mvList" :videoType="'mv'" @clickListCardItem="goToMvDetail"></video-list-card>
+    <video-list-card 
+        :videoList="mvList" 
+        :videoType="'mv'" 
+        :isLoad="true"
+        @bottomLoad="bottomLoad"
+        @clickListCardItem="goToMvDetail"></video-list-card>
   </div>
 </template>
 
@@ -77,28 +82,48 @@ export default {
     getMv(){
       getMvList(this.type,this.area,this.order,(this.currentPage - 1 ) *this.pageSize).then(res=>{
         console.log(res);
-        // 先清空
-        this.mvList = [],
+        
         this.mvList.push(...res.data.data)
         this.hasMore = res.data.hasMore
       })
     },
     areaItem(index){
       // console.log('啦啦啦',index);
+      // 先清空
+      this.mvList = []
+      this.currentPage = 1
       this.area = this.areaList[index].path
       this.getMv()
     },
     typeItem(index){
       this.type = this.typeList[index].path
+      // 先清空
+      this.mvList = []
+      this.currentPage = 1
       this.getMv()
 
       // console.log('lelele',index);
     },
     orderItem(index){
       this.order = this.orderList[index].path
+      // 先清空
+      this.mvList = []
+      this.currentPage = 1
       this.getMv()
 
       // console.log('heiheihei',index);
+    },
+    //下拉加载更多
+    bottomLoad(){
+      console.log('芜湖，起飞~~~');
+      this.currentPage +=1
+      if(this.hasMore){
+        
+        let _this = this
+        setTimeout(() => {
+          _this.getMv()
+        }, 3000);
+      }
     },
     goToMvDetail(id){
       console.log('lalal',id);

@@ -1,8 +1,8 @@
 <template>
-  <div class="discover">
+  <div class="collection">
     <!-- 三级路由占位符 -->
     <!-- 头部导航组件 -->
-    <nav-bar :navBarItem='navBarItem' @clickBarItem="clickBarItem"></nav-bar>
+    <nav-bar :navBarItem='navBarItem' @clickBarItem="clickBarItem" class="nav"></nav-bar>
     <router-view></router-view>
   </div>
 </template>
@@ -12,7 +12,7 @@
 import navBar from 'components/navBar/navBar.vue'
 
 export default {
-  name:'discover',
+  name:'collection',
   components:{
     navBar
   },
@@ -43,5 +43,5 @@ export default {
 </script>
 
 <style scoped>
-
+  
 </style>

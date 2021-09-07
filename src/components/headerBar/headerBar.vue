@@ -1,16 +1,5 @@
 
 
-/*
-  data: 2021-08-21 
-  未完成：
-        搜索功能未完成   popover弹出框显示存在bug
-  存在问题（bug）：
-        注册功能可能有bug
-        登录/退出 会有抖动
-
- */
-
-
 <template>
 
   <div class="headerBar">
@@ -249,7 +238,7 @@ export default {
   created() {
     // 获取热搜列表
     getHotSearch().then(res=>{
-      console.log(res);
+      // console.log(res);
       this.hotSearchList = res.data.data
     })
      
@@ -317,7 +306,7 @@ export default {
       this.$message.success("退出成功!");
       // 刷新页面
       // this.$router.replace('/index')
-      // this.$router.go(0)
+      this.$router.go(0)
     },
     // 注册对话框打开
     register(){
@@ -333,7 +322,7 @@ export default {
       var date = new Date();
       date.setTime(date.getTime() - 10000);
       var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
-      console.log("需要删除的cookie名字：" + keys);
+      // console.log("需要删除的cookie名字：" + keys);
       if (keys) {
         for (var i = keys.length; i--; )
           document.cookie =

@@ -1,3 +1,7 @@
+/**---------
+      watch监听vuex和$route.path
+      下载的音乐的监听
+ */
 <template>
   <div class="asideBar">
     
@@ -6,6 +10,7 @@
       :default-active = activePath
       class="el-menu-vertical-demo"
       router
+     
      >
       <el-menu-item :index="item.path" v-for="(item) in asiderBarList" :key="item.path" class="menu-item" >
         <i class="iconfont" :class="item.icon"></i>
@@ -74,13 +79,13 @@ export default {
     
     // 取路由中的首地址 用于侧边栏的导航active
     this.activePath = "/" + this.$route.path.split("/")[1];
-    console.log(this.$route.path.split("/")[1]);
+    // console.log(this.$route.path.split("/")[1]);
 
     // this.activePath =  window.sessionStorage.getItem('activePath') || '/discover'
 
     // 顶部栏读取登陆状态需要一定时间，所以延时500ms后执行
     setTimeout(()=>{
-      this.getMusicList()
+      this.getUserMusicList()
     },500)
   },
   methods: {
@@ -91,7 +96,7 @@ export default {
       this.activePath = path
     }, */
     // 根据用户信息获取收藏的歌单和创建的歌单 二次封装api
-    getMusicList(){
+    getUserMusicList(){
       // 先判断是否登录   this.$store.state.isLogin
       if(this.$store.state.isLogin != true){
          this.$message.error("请先进行登录操作");
@@ -101,7 +106,7 @@ export default {
         //Date.parse()  返回当前时间的毫秒数
         let timestamp = Date.parse(new Date());
         this.userInfo = window.localStorage.getItem('userInfo')  && JSON.parse(window.localStorage.getItem('userInfo'))
-        console.log(this.userInfo);
+        // console.log(this.userInfo);
         getMusicSheetList(this.userInfo.userId).then(res=>{
           // console.log(res);
           // 对数据进行分类
@@ -117,6 +122,30 @@ export default {
       }
     }
   },
+  watch:{
+
+    //$route(to, from) {
+    //   if (to !== from) {
+    //     // 直接 go会导致整个页面进行刷新
+    //     // this.$router.go(0);
+    //   }
+    // },
+    //监听收藏歌单的变化 current代表最新数据
+    '$store.state.collectedMusicList'(current){
+      this.collectedMusicList = current
+      // console.log(current);
+    },
+    //监听$route.path
+    '$route.path'(current){
+       // 取路由中的首地址 用于侧边栏的导航active
+      //  console.log(this.$route);
+      this.defaultActive = "/" + this.$route.path.split("/")[1]; 
+    },
+    // 监听当前下载音乐信息(vuex)
+    '$store.state.downloadMusicInfo'(current){
+      // console.log(current);
+    }
+  }
 }
 </script>
 

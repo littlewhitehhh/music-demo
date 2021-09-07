@@ -131,18 +131,29 @@ export default {
     goToVideoDetail(id, index, type){
       console.log(id, index, type);
     },
+    // 下拉加载更多
     bottomLoad(){
-      console.log('1111');
+      // console.log('1111');
+      this.videoPage += 1
+      if(this.hasMore){
+        let _this = this
+        setTimeout(() => {
+          _this.getVideos()
+        }, 3000);
+      }
     }
+      
   },
 }
 </script>
 
 <style scoped>
 .videoListNavBar{
+  margin-bottom: 10px;
   display: flex;
 }
 .left{
+  margin-left: 10px;
   padding: 5px 10px;
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -188,5 +199,11 @@ export default {
 }
 .content{
   margin-top: 20px;
+}
+.cardList{
+  
+  overflow-y: scroll;
+  height: calc(100vh - 202px);
+
 }
 </style>

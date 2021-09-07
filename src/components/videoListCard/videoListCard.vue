@@ -1,6 +1,7 @@
 <template>
-  <!-- singermv 和 mv -->
+  
   <div>
+    <!-- singermv 和 mv -->
     <div
       class="videoListCard"
       v-infinite-scroll="load"
@@ -52,19 +53,21 @@
         :key="index"
         @click="clickListCardItem(item.vid || item.data.vid, index, item.type)"
       >
+        <!--video封面  -->
         <div class="videoCover">
           <img
-            :src="(item.coverUrl || item.data.coverUrl) + '?param=1260y800'"
-            alt=""
-          />
+            :src="(item.coverUrl || item.data.coverUrl)"
+            alt=""/>
+          <!--播放次数  -->
           <div class="playCount">
-            <i class="iconfont icon-shipin"></i
-            >{{ (item.playTime || item.data.playTime) | handleNum }}
+            <i class="iconfont icon-shipin"></i>{{ (item.playTime || item.data.playTime) | handleNum }}
           </div>
+          <!-- 视频时长 -->
           <div class="videoTime">
             {{ (item.durationms || item.data.durationms) | handleMusicTime }}
           </div>
         </div>
+        <!-- video标题 -->
         <div class="videoTitle">{{ item.title || item.data.title }}</div>
       </div>
     </div>
@@ -83,6 +86,7 @@ export default {
     };
   },
   props: {
+    // 数据
     videoList: {
       type: Array,
       default() {
@@ -109,6 +113,7 @@ export default {
     },
     // 上拉触底触发
     load() {
+      // console.log('芜湖！起飞~~~~');
       this.$emit("bottomLoad");
       // 触发load后加载数据 期间不允许再次触发load事件
       this.disabled = true;

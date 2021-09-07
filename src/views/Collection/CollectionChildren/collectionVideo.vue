@@ -45,6 +45,8 @@ export default {
 <style scoped>
 .count{
   font-size: 12px;
+  margin-left:10px;
+  margin-bottom: 10px;
 }
 .tip {
   text-align: center;

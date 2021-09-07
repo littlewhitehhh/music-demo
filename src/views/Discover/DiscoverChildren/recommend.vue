@@ -8,8 +8,6 @@
 
 <template>
   <div class="recommend">
-    
-
     <!-- 轮播图 -->
     <div class="banner">
       <el-carousel :interval="4000" type="card" height="200px">

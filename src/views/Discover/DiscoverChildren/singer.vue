@@ -18,7 +18,10 @@
 
 
     </div>
-    <list-card :songSheetList="singerList" @clickListCardItem="clickSingerItem" isLoad @bottomLoad='bottomLoad'></list-card>
+    <list-card :songSheetList="singerList"
+               @clickListCardItem="clickSingerItem" 
+               :isLoad="true" 
+               @bottomLoad='bottomLoad'></list-card>
   </div>
 </template>
 
@@ -141,7 +144,12 @@ export default {
       // 如果还有更多，则继续加载
        if (this.isMore == true) {
         this.currentPage += 1;
-        this.getSingers();
+        let _this = this
+        // 因为api的原因 所以设置了个定时器来还价api压力
+        // console.log(_this.getSingers);
+         setTimeout(() => {
+          _this.getSingers()
+        }, 5000);
       }
     },
     // 点击歌手康详情

@@ -53,3 +53,9 @@
     border-color: #DCDFE6;
     color: #606266;
 }
+
+.el-popover {
+    max-height: 500px;
+    overflow-x: scroll;
+    font-size: 10px !important;
+}

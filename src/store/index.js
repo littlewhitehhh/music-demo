@@ -25,7 +25,7 @@ export default new Vuex.Store({
     mutations: {
         // 更新登陆状态
         updataLoginState(state) {
-            console.log(state);
+            // console.log(state);
             state.isLogin = !state.isLogin
         },
         // 跟更新已经收藏的歌单

@@ -3,7 +3,7 @@
     <!-- 收藏过专辑 -->
     <div v-if="count !=0">
       <div class="count" >收藏的歌手（{{count}})</div>
-    <list-card :songSheetList ="singerList" @clickListCardItem="clickListCardItem"></list-card>
+    <list-card class="list-card" :songSheetList ="singerList" @clickListCardItem="clickListCardItem"></list-card>
     </div>
     <!-- 没有收藏过专辑 -->
     <div v-else class="tip">
@@ -45,8 +45,13 @@ export default {
 <style scoped>
 .count{
   font-size: 12px;
+  margin-left:10px;
+  margin-bottom: 10px;
 }
 .tip {
   text-align: center;
+}
+.list-card{
+  margin-left: 10px;
 }
 </style>

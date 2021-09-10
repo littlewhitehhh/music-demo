@@ -84,12 +84,13 @@ export function getSearchSuggest(keywords) {
     })
 }
 // 根据账号获取用户收藏、创建的歌单
-export function getMusicSheetList(uid) {
+export function getMusicSheetList(uid, timestamp) {
     return request({
         method: 'Get',
         url: '/user/playlist',
         params: {
             uid,
+            timestamp
         }
     })
 }
@@ -278,29 +279,77 @@ export function getMusicRecommend() {
 
 
 // 通过歌单id查询歌单详情
-export function getSongSheetDetail(id) {
+export function getSongSheetDetail(id, timestamp) {
     return request({
         method: 'GET',
         url: '/playlist/detail',
         params: {
             id,
+            timestamp
         }
 
 
     })
 }
-
-
+//根据ids获取歌曲详情
+export function getsongsDetail(ids) {
+    return request({
+        method: 'GET',
+        url: '/song/detail',
+        params: {
+            ids
+        }
+    })
+}
 // 获取歌单评论
-export function getMusicListComment(id, offset, limit = 50, ) {
+export function getMusicListComment(id, offset, timestamp, limit = 50) {
     return request({
         method: 'GET',
         url: '/comment/playlist',
         params: {
             id,
             offset,
+            timestamp,
             limit,
+        }
+    })
+}
 
+// 收藏歌单
+export function collectSongSheet(id, t, timestamp) {
+    return request({
+        method: 'GET',
+        url: '/playlist/subscribe',
+        params: {
+            id,
+            t,
+            timestamp, //暂时不清楚这个timestam干什么用的
+        }
+    })
+}
+// 发送评论
+export function sendComment(t, id, type, content) {
+    return request({
+        method: 'GET',
+        url: '/comment',
+        params: {
+            t, //1为发送 2为回复
+            id,
+            type,
+            content,
+        }
+    })
+}
+// 给评论点赞
+export function sendCommentLike(id, cid, t, type) {
+    return request({
+        method: 'GET',
+        url: 'comment/like',
+        params: {
+            id,
+            cid,
+            t,
+            type
         }
     })
 }

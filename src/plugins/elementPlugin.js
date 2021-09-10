@@ -24,7 +24,8 @@ import {
     // InfiniteScroll,
     InfiniteScroll,
     TabPane,
-    Tabs
+    Tabs,
+    Loading
 
 
 
@@ -52,5 +53,6 @@ Vue.use(TableColumn)
 Vue.use(InfiniteScroll)
 Vue.use(Tabs)
 Vue.use(TabPane)
+Vue.use(Loading)
 
 Vue.prototype.$message = Message

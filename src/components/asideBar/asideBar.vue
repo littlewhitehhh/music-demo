@@ -107,7 +107,7 @@ export default {
         let timestamp = Date.parse(new Date());
         this.userInfo = window.localStorage.getItem('userInfo')  && JSON.parse(window.localStorage.getItem('userInfo'))
         // console.log(this.userInfo);
-        getMusicSheetList(this.userInfo.userId).then(res=>{
+        getMusicSheetList(this.userInfo.userId,timestamp).then(res=>{
           // console.log(res);
           // 对数据进行分类
           let playList =res.data.playlist;

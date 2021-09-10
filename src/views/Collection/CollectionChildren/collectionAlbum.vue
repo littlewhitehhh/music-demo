@@ -3,7 +3,7 @@
     <!-- 收藏过专辑 -->
     <div v-if="count !=0">
       <div class="count" >收藏的专辑（{{count}})</div>
-    <list-card :songSheetList ="AblumList"          @clickListCardItem="clickListCardItem"
+    <list-card :songSheetList ="AblumList" @clickListCardItem="clickListCardItem"
     class="list-card"></list-card>
     </div>
     <!-- 没有收藏过专辑 -->
